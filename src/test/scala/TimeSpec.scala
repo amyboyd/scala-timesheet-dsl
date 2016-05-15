@@ -37,8 +37,18 @@ class TimeSpec extends FlatSpec {
 
     val time2 = new Time(2.66f)
 
-    var sum = time1 + time2
+    val sum = time1 + time2
     assert(sum.hours === 5)
     assert(sum.minutes === 10)
+  }
+
+  it should "be able to chain additions together" in {
+    val sum =
+      new Time(2.5f) +
+      new Time(2.66f) +
+      new Time(4, 30) +
+      new Time(1, 0)
+    assert(sum.hours === 10)
+    assert(sum.minutes === 40)
   }
 }
