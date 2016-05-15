@@ -4,6 +4,10 @@ sealed abstract class Token
 
 case class Day(day: String) extends Token
 
+/**
+ * A value object for storing hours and minutes. If the number of minutes is >= 60, the minutes will
+ * be converted to hours and minutes.
+ */
 case class Time(var hours: Int, var minutes: Int) extends Token {
   while (minutes >= 60) {
     minutes -= 60
@@ -22,4 +26,4 @@ case class Task(name: String) extends Token
 
 case class Unknown(text: String) extends Token
 
-case class Activity(day: Day, time: Time, task: Task)
+final case class Activity(day: Day, time: Time, task: Task)
